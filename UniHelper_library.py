@@ -43,7 +43,7 @@ class GestioneUtente:
                         self.__corso=res[0]
                         self.__c.execute(
                             'UPDATE Utente SET corso_laurea=? WHERE id_utente=?;', (self.__corso, self.__id))
-                        return f"ho impostato il corso {self.__corso}",1
+                        return f"✅Ho impostato il corso {self.__corso}",1
                 text="Non ho capito :(\n\nIntendevi per caso uno di questi? \n"
                 for res in corsi:
                     text=text+res[0]+"\n"
@@ -52,7 +52,7 @@ class GestioneUtente:
                 self.__corso=corsi[0][0]
                 self.__c.execute(
                     'UPDATE Utente SET corso_laurea=? WHERE id_utente=?;', (self.__corso, self.__id))
-                return f"ho impostato il corso {self.__corso}",1
+                return f"✅Ho impostato il corso {self.__corso}",1
             return "Nessun corso trovato, inseriscine uno valido:",0
         return "Imposta un corso valido:",0
 
@@ -212,7 +212,7 @@ class Lauree(Ricerca):
                 for x in range(0, 4, 1):
                     res[i-1][x] = (res[i-1][x].split('</td>'))[0]
                     if x == 3:
-                        res[i-1][x] = ((res[i-1][x].split('"'))[49])
+                        res[i-1][x] = ((((res[i-1][x].split('"'))[49]).split(': '))[1])
                     elif x == 4:
                         res[i-1][x] = ((res[i-1][x].split('"'))[55])
             for i in range(0, len(res), 1):
